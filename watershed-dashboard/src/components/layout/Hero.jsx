@@ -8,11 +8,6 @@ function Hero() {
     <div className="relative h-screen flex items-center overflow-hidden">
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-100/80 to-transparent z-10"></div>
-        <img 
-          src="/api/placeholder/1920/1080" 
-          alt="Watershed landscape" 
-          className="w-full h-full object-cover"
-        />
       </div>
       
       <div className="container mx-auto px-6 relative z-20">
