@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import axios from 'axios';
 
-function TemperatureChart() {
+function WaterConductivityChart() {
   const [data, setData] = useState([]); // State to store fetched data
   const [year, setYear] = useState('all'); // Default to "all" for all-time data
 
@@ -10,15 +10,15 @@ function TemperatureChart() {
   useEffect(() => {
     axios.get(`http://localhost:5000/api/water-quality?year=${year}`)
       .then((response) => {
-        // Transform the data if necessary
+        console.log(response.data); // Log the response to verify the data structure
         const transformedData = response.data.map((item) => ({
           month: item.EventDate.split('T')[0], // Extract date (YYYY-MM-DD)
-          temperature: item.WaterTemp,
+          conductivity: item.Conductivity, // Map conductivity data
         }));
         setData(transformedData);
       })
       .catch((error) => {
-        console.error('Error fetching temperature data:', error);
+        console.error('Error fetching water conductivity data:', error);
       });
   }, [year]); // Re-fetch data when the year changes
 
@@ -48,8 +48,7 @@ function TemperatureChart() {
           <XAxis dataKey="month" stroke="#888" />
           <YAxis 
             stroke="#888" 
-            domain={[10, 30]} 
-            label={{ value: 'Temperature (°C)', angle: -90, position: 'insideLeft' }} 
+            label={{ value: 'Conductivity (µS/cm)', angle: -90, position: 'insideLeft' }} 
           />
           <Tooltip 
             contentStyle={{
@@ -58,15 +57,16 @@ function TemperatureChart() {
               borderRadius: '0.5rem',
               boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
             }}
-            formatter={(value) => [`${value}°C`, 'Temperature']}
+            formatter={(value) => [`${value} µS/cm`, 'Conductivity']}
           />
           <Line 
             type="monotone" 
-            dataKey="temperature" 
-            stroke="#F97316" 
+            dataKey="conductivity" 
+            name="Water Conductivity" 
+            stroke="#F59E0B" 
             strokeWidth={2}
-            dot={{ fill: '#F97316', r: 4 }} 
-            activeDot={{ fill: '#F97316', r: 6, strokeWidth: 2 }}
+            dot={{ fill: '#F59E0B', r: 4 }} 
+            activeDot={{ fill: '#F59E0B', r: 6, strokeWidth: 2 }}
           />
         </LineChart>
       </ResponsiveContainer>
@@ -74,4 +74,4 @@ function TemperatureChart() {
   );
 }
 
-export default TemperatureChart;
+export default WaterConductivityChart;

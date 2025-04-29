@@ -13,7 +13,7 @@ app.use(express.json());
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'Wellness1919',
+  password: '*******',
   database: 'water_quality_tracker',
 });
 
@@ -27,7 +27,13 @@ db.connect((err) => {
 
 // API Endpoint to Fetch Data
 app.get('/api/water-quality', (req, res) => {
-  const query = 'SELECT * FROM water_quality_tracker.water_quality_record'; // Correct table name
+  const { year } = req.query;
+  let query = 'SELECT * FROM water_quality_tracker.water_quality_record';
+
+  if (year && year !== 'all') {
+    query += ` WHERE YEAR(EventDate) = ${db.escape(year)}`;
+  }
+
   db.query(query, (err, results) => {
     if (err) {
       console.error(err);

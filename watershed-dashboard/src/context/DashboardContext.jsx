@@ -6,11 +6,21 @@ const defaultCharts = [
     id: 'water-quality',
     type: 'line',
     title: 'Water Quality Parameters',
-    subtitle: '6-Month Trend Analysis',
+    subtitle: '12-Month Trend Analysis',
     dataset: 'waterQualityData',
     visible: true,
-    size: 'half', // half or full width
+    size: 'full', // half or full width
     order: 1,
+  },
+  {
+    id: 'temperature',
+    type: 'line',
+    title: 'Water Temperature',
+    subtitle: 'Seasonal Variations',
+    dataset: 'temperatureData',
+    visible: false,
+    size: 'full',
+    order: 6,
   },
   {
     id: 'water-usage',
@@ -53,15 +63,15 @@ const defaultCharts = [
     order: 5,
   },
   {
-    id: 'temperature',
-    type: 'line',
-    title: 'Water Temperature',
-    subtitle: 'Seasonal Variations',
-    dataset: 'temperatureData',
-    visible: false,
-    size: 'half',
-    order: 6,
-  }
+    id: 'water-conductivity', // New chart ID
+    type: 'line', // Chart type
+    title: 'Water Conductivity', // Chart title
+    subtitle: 'Conductivity Trends Over Time', // Chart subtitle
+    dataset: 'waterConductivityData', // Dataset key
+    visible: true, // Initially displayed
+    size: 'full', // Full-width chart
+    order: 7, // Order in the dashboard
+  },
 ];
 
 // Create the context
