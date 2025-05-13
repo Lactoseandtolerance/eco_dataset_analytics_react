@@ -6,7 +6,6 @@ import { AnimatePresence } from 'framer-motion';
 import HomePage from '../../pages/HomePage';
 import Dashboard from '../../pages/Dashboard';
 import Regions from '../../pages/Regions';
-import Reports from '../../pages/Reports';
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -17,7 +16,6 @@ function AnimatedRoutes() {
         <Route path="/" element={<HomePage />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/regions" element={<Regions />} />
-        <Route path="/reports" element={<Reports />} />
       </Routes>
     </AnimatePresence>
   );

@@ -67,10 +67,6 @@ function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <Link to="/" className="flex items-center">
-              <Droplet className="h-8 w-8 text-blue-500" />
-              <span className="ml-2 text-xl font-semibold text-blue-700">Drizzual</span>
-            </Link>
           </div>
           
           {/* Desktop menu */}
@@ -78,7 +74,6 @@ function Navbar() {
             <NavLink to="/" icon={<Home size={18} />} text="Home" />
             <NavLink to="/dashboard" icon={<BarChart2 size={18} />} text="Dashboard" />
             <NavLink to="/regions" icon={<MapPin size={18} />} text="Regions" />
-            <NavLink to="/reports" icon={<FileText size={18} />} text="Reports" />
           </div>
           
           {/* Mobile menu button */}
@@ -105,7 +100,6 @@ function Navbar() {
           <MobileNavLink to="/" icon={<Home size={18} />} text="Home" setIsOpen={setIsOpen} />
           <MobileNavLink to="/dashboard" icon={<BarChart2 size={18} />} text="Dashboard" setIsOpen={setIsOpen} />
           <MobileNavLink to="/regions" icon={<MapPin size={18} />} text="Regions" setIsOpen={setIsOpen} />
-          <MobileNavLink to="/reports" icon={<FileText size={18} />} text="Reports" setIsOpen={setIsOpen} />
         </div>
       </motion.div>
     </nav>
