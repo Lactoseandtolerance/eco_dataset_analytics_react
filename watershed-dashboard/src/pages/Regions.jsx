@@ -1,8 +1,63 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin } from 'lucide-react';
+import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
 
 function Regions() {
+  const mapRef = useRef(null);
+  const [geoData, setGeoData] = useState(null);
+
+  useEffect(() => {
+    const fetchGeoData = async () => {
+      try {
+        const response = await fetch('../../data/georgia.geojson');
+        const data = await response.json();
+        setGeoData(data);
+      } catch (error) {
+        console.error('Error loading GeoJSON data:', error);
+      }
+    };
+
+    fetchGeoData();
+  }, []);
+
+  useEffect(() => {
+    if (mapRef.current && geoData) {
+      const map = mapRef.current;
+      const bounds = L.geoJSON(geoData).getBounds();
+      map.fitBounds(bounds);
+    }
+  }, [geoData]);
+
+  const mapStyle = {
+    fillColor: '#4a90e2',
+    weight: 2,
+    opacity: 1,
+    color: 'white',
+    dashArray: '3',
+    fillOpacity: 0.7,
+  };
+
+  const onEachFeature = (feature, layer) => {
+    layer.on({
+      mouseover: (e) => {
+        const layer = e.target;
+        layer.setStyle({
+          fillColor: '#1a5276',
+          fillOpacity: 0.9,
+        });
+      },
+      mouseout: (e) => {
+        const layer = e.target;
+        layer.setStyle(mapStyle);
+      },
+      click: (e) => {
+        const layer = e.target;
+        console.log('Clicked on region:', layer.feature.properties.name);
+      },
+    });
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -17,12 +72,22 @@ function Regions() {
           <p className="text-gray-600 mt-2">Explore watersheds by geographical regions</p>
         </header>
         
-        <div className="bg-white rounded-xl shadow-sm overflow-hidden p-4 h-96 flex items-center justify-center">
-          <div className="text-center">
-            <MapPin size={48} className="text-blue-400 mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-gray-700">Interactive Map Coming Soon</h3>
-            <p className="text-gray-500 mt-2">Regional watershed data will be displayed here</p>
-          </div>
+        <div className="bg-white rounded-xl shadow-sm overflow-hidden p-4">
+          <MapContainer
+            ref={mapRef}
+            center={[32.75, -83.5]}
+            zoom={7}
+            style={{ height: '500px', width: '100%' }}
+          >
+            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+            {geoData && (
+              <GeoJSON
+                data={geoData}
+                style={mapStyle}
+                onEachFeature={onEachFeature}
+              />
+            )}
+          </MapContainer>
         </div>
       </div>
     </motion.div>
