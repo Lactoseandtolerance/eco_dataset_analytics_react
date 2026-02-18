@@ -46,7 +46,7 @@ If you want a completely independent copy without any connection to the original
    git remote remove origin
    git remote add origin https://github.com/YOUR-USERNAME/YOUR-NEW-REPO.git
    ```
-4. Push to your new repository:
+4. Push to your new repository (the default branch is 'main'):
    ```bash
    git push -u origin main
    ```
@@ -64,8 +64,9 @@ If you want to start fresh without the commit history:
    git add .
    git commit -m "Initial commit"
    ```
-4. Create a new repository on GitHub and push:
+4. Create a new repository on GitHub and push (set branch to 'main'):
    ```bash
+   git branch -M main
    git remote add origin https://github.com/YOUR-USERNAME/YOUR-NEW-REPO.git
    git push -u origin main
    ```
