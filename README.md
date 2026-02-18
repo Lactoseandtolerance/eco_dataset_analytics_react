@@ -12,6 +12,66 @@ This is a modern, interactive dashboard for visualizing watershed data analytics
 - **Animated Navigation**: Fluid, animated page transitions for a polished user experience
 - **Responsive Design**: Tailored layouts and components for optimal viewing on various screen sizes
 
+## How to Copy This Repository to Your Personal Account
+
+There are several ways to copy this repository to your own GitHub account. Choose the method that best fits your needs:
+
+### Method 1: Fork the Repository (Recommended)
+
+Forking creates a copy of the repository under your GitHub account while maintaining a connection to the original repository. This is ideal if you want to contribute back or stay updated with changes.
+
+1. Navigate to the repository on GitHub: https://github.com/Lactoseandtolerance/eco_dataset_analytics_react
+2. Click the **Fork** button in the top-right corner of the page
+3. Select your account as the destination for the fork
+4. Once forked, clone your copy:
+   ```bash
+   git clone https://github.com/YOUR-USERNAME/eco_dataset_analytics_react.git
+   cd eco_dataset_analytics_react/watershed-dashboard
+   npm install
+   npm run dev
+   ```
+
+### Method 2: Create an Independent Copy
+
+If you want a completely independent copy without any connection to the original repository:
+
+1. Create a new empty repository on GitHub (do not initialize with README, license, or .gitignore)
+2. Clone this repository locally:
+   ```bash
+   git clone https://github.com/Lactoseandtolerance/eco_dataset_analytics_react.git my-watershed-project
+   cd my-watershed-project
+   ```
+3. Remove the original remote and add your new repository:
+   ```bash
+   git remote remove origin
+   git remote add origin https://github.com/YOUR-USERNAME/YOUR-NEW-REPO.git
+   ```
+4. Push to your new repository:
+   ```bash
+   git push -u origin main
+   ```
+
+### Method 3: Use as a Template
+
+If you want to start fresh without the commit history:
+
+1. Download the repository as a ZIP file from GitHub (click "Code" > "Download ZIP")
+2. Extract the ZIP file to your desired location
+3. Initialize a new git repository:
+   ```bash
+   cd extracted-folder
+   git init
+   git add .
+   git commit -m "Initial commit"
+   ```
+4. Create a new repository on GitHub and push:
+   ```bash
+   git remote add origin https://github.com/YOUR-USERNAME/YOUR-NEW-REPO.git
+   git push -u origin main
+   ```
+
+After copying the repository using any method, make sure to update the repository URLs in this README file to reflect your personal repository.
+
 ## Getting Started
 
 ### Prerequisites
